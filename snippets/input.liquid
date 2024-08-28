@@ -1,0 +1,33 @@
+{% style %}
+
+{%  endstyle %}
+
+
+
+<div class="input-wrapper">
+  <!-- 
+  Input needs to have a placeholder in order to use :placeholder-shown pseudo class in Safari.
+  We then hide it using CSS.
+  -->
+  <input autocomplete="off" class="input" type="text" id="name" placeholder="Name" />
+  <label class="label" for="name">
+   First Name*
+  </label>
+  <button class="clear" aria-label="Clear input">
+    <svg viewBox="0 0 16 16" width="12" height="12">
+      <path d="M 1 1 L 15 15 M 1 15 L 15 1" fill="none" stroke-width="2" stroke="currentColor" />
+    </svg>
+  </button>
+</div>
+
+<div class="input-wrapper">
+  <input autocomplete="off" class="input" type="email" id="email" placeholder="Email" />
+  <label class="label" for="email">
+    Email
+  </label>
+  <button class="clear" aria-label="Clear input">
+    <svg viewBox="0 0 16 16" width="12" height="12">
+      <path d="M 1 1 L 15 15 M 1 15 L 15 1" fill="none" stroke-width="2" stroke="currentColor" />
+    </svg>
+  </button>
+</div>
