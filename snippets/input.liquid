@@ -75,6 +75,13 @@
     cursor:pointer;
   }
 
+  .info-icon{
+    position: absolute;
+    top: 1.6rem;
+    right: 1.6rem;
+    cursor:pointer;
+  }
+
   .custom-input:focus + .label {
     color: #0085CA;
   }
@@ -159,6 +166,12 @@
     <div type="button" class="toggle-password" aria-label="Toggle password visibility">
       <div>{% render 'icon-eye-open' %}</div>
       <div class="hidden">{% render 'icon-eye-closed' %}</div>
+    </div>
+  {% endif %}
+
+ {% if info_icon %}
+    <div type="button" class="info-icon" aria-label="Toggle password visibility">
+      <div>{% render 'icon-info' %}</div>
     </div>
   {% endif %}
 </div>
