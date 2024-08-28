@@ -52,8 +52,9 @@
         {%- endfor -%}
       </ul>
     {%- endif -%}
-    <div class="field">
+    <div class="input-wrapper">
       <input
+        class="custom-input"
         type="text"
         name="customer[first_name]"
         id="RegisterForm-FirstName"
@@ -63,7 +64,7 @@
         autocomplete="given-name"
         placeholder="{{ 'customer.register.first_name' | t }}"
       >
-      <label for="RegisterForm-FirstName">
+      <label class="label" for="RegisterForm-FirstName">
         {{ 'customer.register.first_name' | t }}
       </label>
     </div>
