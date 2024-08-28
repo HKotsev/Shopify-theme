@@ -109,14 +109,17 @@
         {{ form.errors.messages.email }}.
       </span>
     {%- endif -%}
+
+     {%- assign first_name_placeholder = 'customer.register.password' | t -%}
+     {%- assign first_name_label = 'customer.register.password' | t -%}
             
   {% render 'input', 
       input_type: 'password', 
       input_name: 'customer[password]', 
       input_id: 'RegisterForm-password', 
       input_autocomplete: 'new-password', 
-      input_placeholder: 'customer.register.password' | t, 
-      input_label: 'customer.register.password' | t, 
+      input_placeholder: first_name_placeholder, 
+      input_label: first_name_label, 
       input_aria_required: 'true', 
       input_aria_invalid: form.errors contains 'password' ? 'true' : '', 
       input_aria_describedby: form.errors contains 'password' ? 'RegisterForm-password-error' : '', 
