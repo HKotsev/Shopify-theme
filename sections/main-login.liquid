@@ -30,6 +30,10 @@
     {%- form 'recover_customer_password' -%}
       {% assign recover_success = form.posted_successfully? %}
       <div class="field">
+        {% render "input" %}
+      </div>
+      
+      <div class="field">
         <input
           type="email"
           value=""
