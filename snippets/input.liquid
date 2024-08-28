@@ -117,6 +117,53 @@
   .custom-input:placeholder-shown + .label + .clear {
     display: none;
   }
+
+  .tooltip-container {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip-trigger {
+    background-color: #0085CA;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.tooltip {
+    visibility: hidden;
+    width: 160px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%; /* Position above the trigger element */
+    left: 50%;
+    margin-left: -80px; /* Center the tooltip */
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.tooltip::after {
+    content: '';
+    position: absolute;
+    top: 100%; /* At the bottom of the tooltip */
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #333 transparent transparent transparent;
+}
+
+.tooltip-container:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
+}
 {% endstyle %}
 
 
@@ -168,6 +215,12 @@
       <div class="icon">{% render 'icon-info-block' %}</div>
     </div>
   {% endif %}
+   <div class="tooltip-container">
+        <button class="tooltip-trigger" aria-describedby="tooltip-text">Hover over me!</button>
+        <div class="tooltip" id="tooltip-text">
+            This is the tooltip text!
+        </div>
+    </div>
 </div>
 
 <!--
