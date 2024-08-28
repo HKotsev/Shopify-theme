@@ -121,9 +121,10 @@
   document.querySelector('.toggle-password').addEventListener('click', function() {
     const inputWrapper = this.closest('.input-wrapper');  // Find the closest .input-wrapper
     const input = inputWrapper.querySelector('.custom-input'); // Select the input within the wrapper
-    
+    console.log(input)
     if (input.type === 'password') {
       input.type = 'text';
+      console.log(input)
       this.innerHTML = `{% render 'icon-eye-closed' %}`; // Toggle to closed eye icon
     } else {
       input.type = 'password';
