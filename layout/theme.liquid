@@ -376,13 +376,13 @@
           console.log(input);
           if (input.type === 'password') {
             input.type = 'text';
-              this.querySelector('div.hidden').classList.toggle('hidden');
-            this.querySelector('div:not(.hidden)').classList.toggle('hidden');
+              this.querySelector('div.hidden').classList.remove('hidden');
+            this.querySelector('div:not(.hidden)').classList.add('hidden');
           } else {
             input.type = 'password';
             // Show the open eye icon and hide the closed eye icon
-            this.querySelector('div.hidden').classList.toggle('hidden');
-            this.querySelector('div:not(.hidden)').classList.toggle('hidden');
+            this.querySelector('div.hidden').classList.remove('hidden');
+            this.querySelector('div:not(.hidden)').classList.add('hidden');
           }
         }
       }
