@@ -52,23 +52,17 @@
         {%- endfor -%}
       </ul>
     {%- endif -%}
-    <div class="input-wrapper">
-      <input
-        class="custom-input"
-        type="text"
-        name="customer[first_name]"
-        id="RegisterForm-FirstName"
-        {% if form.first_name %}
-          value="{{ form.first_name }}"
-        {% endif %}
-        autocomplete="given-name"
-        placeholder="{{ 'customer.register.first_name' | t }}"
-      >
-      <label class="label" for="RegisterForm-FirstName">
-        {{ 'customer.register.first_name' | t }}
-      </label>
-    </div>
-
+      {% render 'input', 
+        input_type: 'text', 
+        input_name: 'customer[first_name]', 
+        input_id: 'RegisterForm-FirstName', 
+        input_value: form.first_name, 
+        input_autocomplete: 'given-name', 
+        input_placeholder: 'customer.register.first_name' | t, 
+        input_label: 'customer.register.first_name' | t, 
+        input_clear: true 
+      %}
+    
     <div class="input-wrapper">
       <input
          class="custom-input"
