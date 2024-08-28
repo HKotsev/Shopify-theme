@@ -31,7 +31,7 @@ body {
   border-color: #0085CA;
 }
 
-.input {
+.custom-input {
   font-size: 20px;
   height: 56px;
   width: 100%;
@@ -45,23 +45,23 @@ body {
   background-color: transparent;
 }
 
-.input:focus {
+.custom-input:focus {
   outline: none;
 }
 
-.input::placeholder {
+.custom-input::placeholder {
   color: transparent;
 }
 
 /* Hide Safari's autofill button */
-.input::-webkit-contacts-auto-fill-button {
+.custom-input::-webkit-contacts-auto-fill-button {
   visibility: hidden;
   pointer-events: none;
   position: absolute;
 }
 
 /* Change the border color of the wrapper on input focus */
-.input:focus ~ .input-wrapper {
+.custom-input:focus ~ .input-wrapper {
   border-color: #0085CA;
 }
 
@@ -79,8 +79,8 @@ body {
   font-family: "Iowan Old Style", "Palatino Linotype", "URW Palladio L", P052, serif;
 }
 
-.input:focus + .label,
-.input:not(:placeholder-shown) + .label {
+.custom-input:focus + .label,
+.custom-input:not(:placeholder-shown) + .label {
   transform: translateY(-60%) scale(0.65);
   color: #0085CA;
 }
@@ -110,7 +110,7 @@ body {
   color: #333;
 }
 
-.input:placeholder-shown + .label + .clear {
+.custom-input:placeholder-shown + .label + .clear {
   display: none;
 }
 {%  endstyle %}
@@ -122,7 +122,7 @@ body {
   Input needs to have a placeholder in order to use :placeholder-shown pseudo class in Safari.
   We then hide it using CSS.
   -->
-  <input autocomplete="off" class="input" type="text" id="name" placeholder="Name" />
+  <input autocomplete="off" class="custom-input" type="text" id="name" placeholder="Name" />
   <label class="label" for="name">
    First Name*
   </label>
