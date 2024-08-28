@@ -49,6 +49,9 @@
         {%- endfor -%}
       </ul>
     {%- endif -%}
+      <div class="field">
+        {% render "input" %}
+      </div>
     <div class="field">
       <input
         type="text"
@@ -64,9 +67,7 @@
         {{ 'customer.register.first_name' | t }}
       </label>
     </div>
-     <div class="field">
-        {% render "input" %}
-      </div>
+
     <div class="field">
       <input
         type="text"
