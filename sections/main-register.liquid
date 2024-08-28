@@ -26,9 +26,7 @@
   <h1>
     {{ 'customer.register.title' | t }}
   </h1>
-          <div class="field">
-        {% render "input" %}
-      </div>
+
   {%- form 'create_customer', novalidate: 'novalidate' -%}
     
     {%- if form.errors -%}
