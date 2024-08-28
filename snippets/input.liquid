@@ -84,6 +84,9 @@
     transform: translateY(-60%) scale(0.65);
   }
 
+  .hidden{
+    display:none;
+  }
 
   .clear {
     cursor: pointer;
@@ -155,6 +158,7 @@
   {% if input_type == 'password' %}
     <div type="button" class="toggle-password" aria-label="Toggle password visibility">
       <div>{% render 'icon-eye-open' %}</div>
+      <div class="hidden">{% render 'icon-eye-closed' %}</div>
     </div>
   {% endif %}
 </div>
