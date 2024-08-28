@@ -1,4 +1,116 @@
 {% style %}
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  padding: 20px;
+  font-size: 20px;
+  background: #f3f4f6;
+}
+
+@media (min-width: 600px) {
+  body {
+    padding: 40px;
+  }
+}
+
+.input-wrapper {
+  position: relative;
+  margin-top: 30px; // To create space for floating 
+  margin-inline: auto;
+  max-width: 400px;
+  border:.0625rem solid #000;
+  border-radius: .5rem;
+}
+/* Alternatively, changing the entire wrapper border color */
+.input-wrapper:focus-within {
+  border-color: #0085CA;
+}
+.input {
+  font-size: 20px;
+  height:56px;
+  width: 100%;
+  padding:1.5rem 1rem .5rem;
+  font-size:1rem;
+  font-weight: 400;
+  line-height: 1.375;
+  color: #000;
+  border: none;
+  transition: border-color 250ms;
+  background-color: transparent;
+
+  &:focus {
+    outline: none;
+  }
+
+  &::placeholder {
+    color: transparent;
+  }
+  
+  // Hide Safari's autofill button
+  &::-webkit-contacts-auto-fill-button {
+    visibility: hidden;
+    pointer-events: none;
+    position: absolute;
+  }
+}
+
+.input:focus ~ .input-wrapper {
+  border-color: #0085CA; /* Change the border color of the wrapper on input focus */
+}
+
+.label {
+  font-size:1rem;
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  color: #43454e;
+  font-weight: 400;
+  line-height: 1.375;
+  pointer-events: none;
+  transform-origin: left center;
+  transition: transform 250ms;
+  font-family: "Iowan Old Style", "Palatino Linotype", "URW Palladio L", P052,
+    serif;
+}
+
+.input:focus + .label,
+.input:not(:placeholder-shown) + .label {
+  transform: translateY(-60%) scale(0.65);
+  color:#0085CA;
+}
+
+.clear {
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  position: absolute;
+  top: 50%;
+  right: -9px; // To visually align with inputs right edge
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  border-radius: 50%;
+  height: 30px;
+  width: 30px;
+  color: #777;
+  transition: color 250ms;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover,
+  &:focus {
+    color: #333;
+  }
+}
+
+.input:placeholder-shown + .label + .clear {
+  display: none;
+}
 
 {%  endstyle %}
 
