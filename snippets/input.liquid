@@ -117,7 +117,7 @@
 {% endstyle %}
 
 <script>
- 
+  document.addEventListener('DOMContentLoaded', function() {
   document.querySelector('.toggle-password').addEventListener('click', function() {
     const inputWrapper = this.closest('.input-wrapper');  // Find the closest .input-wrapper
     const input = inputWrapper.querySelector('.custom-input'); // Select the input within the wrapper
@@ -131,7 +131,7 @@
       // this.innerHTML = `{% render 'icon-eye-open' %}`; // Toggle back to open eye icon
     }
   });
-
+});
 </script>
 
 <div class="input-wrapper">
