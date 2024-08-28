@@ -1,52 +1,72 @@
 {% style %}
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  padding: 20px;
+  font-size: 20px;
+  background: #f3f4f6;
+}
+
+@media (min-width: 600px) {
+  body {
+    padding: 40px;
+  }
+}
 
 .input-wrapper {
   position: relative;
-  margin-top: 30px; // To create space for floating 
+  margin-top: 30px; /* To create space for floating */
   margin-inline: auto;
   max-width: 400px;
-  border:.0625rem solid #000;
-  border-radius: .5rem;
+  border: 0.0625rem solid #000;
+  border-radius: 0.5rem;
 }
-/* Alternatively, changing the entire wrapper border color */
+
+/* Change the entire wrapper border color when focused within */
 .input-wrapper:focus-within {
   border-color: #0085CA;
 }
+
 .input {
   font-size: 20px;
-  height:56px;
+  height: 56px;
   width: 100%;
-  padding:1.5rem 1rem .5rem;
-  font-size:1rem;
+  padding: 1.5rem 1rem 0.5rem;
+  font-size: 1rem;
   font-weight: 400;
   line-height: 1.375;
   color: #000;
   border: none;
   transition: border-color 250ms;
   background-color: transparent;
-
-  &:focus {
-    outline: none;
-  }
-
-  &::placeholder {
-    color: transparent;
-  }
-  
-  // Hide Safari's autofill button
-  &::-webkit-contacts-auto-fill-button {
-    visibility: hidden;
-    pointer-events: none;
-    position: absolute;
-  }
 }
 
+.input:focus {
+  outline: none;
+}
+
+.input::placeholder {
+  color: transparent;
+}
+
+/* Hide Safari's autofill button */
+.input::-webkit-contacts-auto-fill-button {
+  visibility: hidden;
+  pointer-events: none;
+  position: absolute;
+}
+
+/* Change the border color of the wrapper on input focus */
 .input:focus ~ .input-wrapper {
-  border-color: #0085CA; /* Change the border color of the wrapper on input focus */
+  border-color: #0085CA;
 }
 
 .label {
-  font-size:1rem;
+  font-size: 1rem;
   position: absolute;
   top: 1rem;
   left: 1rem;
@@ -56,14 +76,13 @@
   pointer-events: none;
   transform-origin: left center;
   transition: transform 250ms;
-  font-family: "Iowan Old Style", "Palatino Linotype", "URW Palladio L", P052,
-    serif;
+  font-family: "Iowan Old Style", "Palatino Linotype", "URW Palladio L", P052, serif;
 }
 
 .input:focus + .label,
 .input:not(:placeholder-shown) + .label {
   transform: translateY(-60%) scale(0.65);
-  color:#0085CA;
+  color: #0085CA;
 }
 
 .clear {
@@ -72,7 +91,7 @@
   -webkit-appearance: none;
   position: absolute;
   top: 50%;
-  right: -9px; // To visually align with inputs right edge
+  right: -9px; /* To visually align with inputs right edge */
   transform: translateY(-50%);
   background: none;
   border: none;
@@ -84,17 +103,16 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
 
-  &:hover,
-  &:focus {
-    color: #333;
-  }
+.clear:hover,
+.clear:focus {
+  color: #333;
 }
 
 .input:placeholder-shown + .label + .clear {
   display: none;
 }
-
 {%  endstyle %}
 
 
