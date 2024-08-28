@@ -52,16 +52,20 @@
         {%- endfor -%}
       </ul>
     {%- endif -%}
-      {% render 'input', 
-        input_type: 'text', 
-        input_name: 'customer[first_name]', 
-        input_id: 'RegisterForm-FirstName', 
-        input_value: form.first_name, 
-        input_autocomplete: 'given-name', 
-        input_placeholder: 'customer.register.first_name' | t, 
-        input_label: 'customer.register.first_name' | t, 
-        input_clear: true 
-      %}
+            
+     {%- assign first_name_placeholder = 'customer.register.first_name' | t -%}
+     {%- assign first_name_label = 'customer.register.first_name' | t -%}
+
+    {% render 'input', 
+      input_type: 'text', 
+      input_name: 'customer[first_name]', 
+      input_id: 'RegisterForm-FirstName', 
+      input_value: form.first_name, 
+      input_autocomplete: 'given-name', 
+      input_placeholder: first_name_placeholder, 
+      input_label: first_name_label, 
+      input_clear: true 
+    %}
     
     <div class="input-wrapper">
       <input
@@ -118,6 +122,7 @@
       input_aria_describedby: form.errors contains 'password' ? 'RegisterForm-password-error' : '', 
       input_clear: false 
     %}
+    
     {%- if form.errors contains 'password' -%}
       <span id="RegisterForm-password-error" class="form__message">
         <svg aria-hidden="true" focusable="false">
