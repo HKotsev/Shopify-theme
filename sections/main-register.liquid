@@ -69,8 +69,9 @@
       </label>
     </div>
 
-    <div class="field">
+    <div class="input-wrapper">
       <input
+         class="custom-input"
         type="text"
         name="customer[last_name]"
         id="RegisterForm-LastName"
@@ -80,12 +81,13 @@
         autocomplete="family-name"
         placeholder="{{ 'customer.register.last_name' | t }}"
       >
-      <label for="RegisterForm-LastName">
+      <label class="label" for="RegisterForm-LastName">
         {{ 'customer.register.last_name' | t }}
       </label>
     </div>
-    <div class="field">
+    <div class="input-wrapper">
       <input
+        class="custom-input"
         type="email"
         name="customer[email]"
         id="RegisterForm-email"
@@ -102,7 +104,7 @@
         {% endif %}
         placeholder="{{ 'customer.register.email' | t }}"
       >
-      <label for="RegisterForm-email">
+      <label class="label" for="RegisterForm-email">
         {{ 'customer.register.email' | t }}
       </label>
     </div>
@@ -115,8 +117,9 @@
         {{ form.errors.messages.email }}.
       </span>
     {%- endif -%}
-    <div class="field">
+    <div class="input-wrapper">
       <input
+        class="custom-input"
         type="password"
         name="customer[password]"
         id="RegisterForm-password"
@@ -127,7 +130,7 @@
         {% endif %}
         placeholder="{{ 'customer.register.password' | t }}"
       >
-      <label for="RegisterForm-password">
+      <label class="label" for="RegisterForm-password">
         {{ 'customer.register.password' | t }}
       </label>
     </div>
