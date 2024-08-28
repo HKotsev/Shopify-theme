@@ -68,15 +68,8 @@
     transition: transform 250ms;
   }
 
-  .toggle-password{
-    position: absolute;
-    top: 1.6rem;
-    right: 1.6rem;
-    cursor:pointer;
-  }
-
-  .info-icon{
-    position: absolute;
+  .icon{
+     position: absolute;
     top: 1.6rem;
     right: 1.6rem;
     cursor:pointer;
@@ -163,15 +156,15 @@
   </label>
 
   {% if input_type == 'password' %}
-    <div type="button" class="toggle-password" aria-label="Toggle password visibility">
+    <div type="button" class="icon toggle-password" aria-label="Toggle password visibility">
       <div>{% render 'icon-eye-open' %}</div>
       <div class="hidden">{% render 'icon-eye-closed' %}</div>
     </div>
   {% endif %}
 
  {% if info_icon %}
-    <div type="button" class="info-icon" aria-label="Toggle password visibility">
-      <div>{% render 'icon-info' %}</div>
+    <div type="button" class="icon info-icon" aria-label="Toggle password visibility">
+      <div>{% render 'icon-input-info' %}</div>
     </div>
   {% endif %}
 </div>
