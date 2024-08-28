@@ -53,9 +53,7 @@
 .custom-input:focus ~ .input-wrapper {
   border-color: #0085CA;
 }
-.custom-input:focus > .label{ 
-color: #0085CA;
-}
+
 
 .label {
   font-size: 1.6rem;
@@ -69,6 +67,10 @@ color: #0085CA;
   transform-origin: left center;
   transition: transform 250ms;
   font-family: "Iowan Old Style", "Palatino Linotype", "URW Palladio L", P052, serif;
+}
+
+.input:focus + .label {
+  color: #0085CA;
 }
 
 .custom-input:focus + .label,
