@@ -118,7 +118,47 @@
     display: none;
   }
 
+  .tooltip-container {
+    position: relative;
+    display: inline-block;
+}
 
+.tooltip-trigger {   
+    cursor: pointer;
+}
+
+.tooltip {
+    visibility: hidden;
+    width: 160px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%; /* Position above the trigger element */
+    left: 50%;
+    margin-left: -80px; /* Center the tooltip */
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.tooltip::after {
+    content: '';
+    position: absolute;
+    top: 100%; /* At the bottom of the tooltip */
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #333 transparent transparent transparent;
+}
+
+.tooltip-container:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
+}
 {% endstyle %}
 
 
@@ -167,9 +207,9 @@
  {% if info_icon %}
     <div class="icon tooltip-container" aria-label="Toggle password visibility">
       <div class="tooltip-trigger" aria-describedby="tooltip-text">{% render 'icon-input-info' %}</div>
-      <div class="tooltip" id="tooltip-text">
+      <!-- <div class="tooltip" id="tooltip-text">
             This is the tooltip text!
-        </div>
+        </div> -->
     </div>
   {% endif %}
 </div>
