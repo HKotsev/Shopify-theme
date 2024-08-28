@@ -210,9 +210,11 @@
   {% endif %}
 
  {% if info_icon %}
-    <div type="button" class="icon" aria-label="Toggle password visibility">
-      <div class="info-icon">{% render 'icon-input-info' %}</div>
-      <div class="icon">{% render 'icon-info-block' %}</div>
+    <div type="button" class="icon tooltip-container" aria-label="Toggle password visibility">
+      <div class="tooltip-trigger" aria-describedby="tooltip-text">{% render 'icon-input-info' %}</div>
+      <div class="tooltip" id="tooltip-text">
+            This is the tooltip text!
+        </div>
     </div>
   {% endif %}
    <div class="tooltip-container">
