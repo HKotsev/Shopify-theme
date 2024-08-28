@@ -118,14 +118,35 @@
   We then hide it using CSS.
   -->
   <input autocomplete="off" class="custom-input" type="text" id="name" placeholder="Name" />
-  <label class="label" for="name">
-   First Name*
+  <input
+    class="custom-input"
+    type="{{ input_type }}"
+    name="{{ input_name }}"
+    id="{{ input_id }}"
+    {% if input_value %}
+      value="{{ input_value }}"
+    {% endif %}
+    autocomplete="{{ input_autocomplete }}"
+    placeholder="{{ input_placeholder }}"
+    {% if input_spellcheck %}
+      spellcheck="{{ input_spellcheck }}"
+    {% endif %}
+    {% if input_autocapitalize %}
+      autocapitalize="{{ input_autocapitalize }}"
+    {% endif %}
+    {% if input_aria_required %}
+      aria-required="{{ input_aria_required }}"
+    {% endif %}
+    {% if input_aria_invalid %}
+      aria-invalid="{{ input_aria_invalid }}"
+    {% endif %}
+    {% if input_aria_describedby %}
+      aria-describedby="{{ input_aria_describedby }}"
+    {% endif %}
+  >
+  <label class="label" for="{{ input_id }}">
+    {{ input_label }}
   </label>
-  <button class="clear" aria-label="Clear input">
-    <svg viewBox="0 0 16 16" width="12" height="12">
-      <path d="M 1 1 L 15 15 M 1 15 L 15 1" fill="none" stroke-width="2" stroke="currentColor" />
-    </svg>
-  </button>
 </div>
 
 <!-- <div class="input-wrapper">
