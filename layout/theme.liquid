@@ -381,8 +381,8 @@
           } else {
             input.type = 'password';
             // Show the open eye icon and hide the closed eye icon
-            this.querySelector('div.hidden').classList.remove('hidden');
             this.querySelector('div:not(.hidden)').classList.add('hidden');
+            this.querySelector('div.hidden').classList.remove('hidden');
           }
         }
       }
