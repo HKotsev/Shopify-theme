@@ -376,14 +376,13 @@
           console.log(input);
           if (input.type === 'password') {
             input.type = 'text';
-             this.children.forEach(child=>{
-              child.classList.toggle("hidden")
-            })
+              this.querySelector('div.hidden').classList.toggle('hidden');
+            this.querySelector('div:not(.hidden)').classList.toggle('hidden');
           } else {
             input.type = 'password';
-             this.children.forEach(child=>{
-              child.classList.toggle("hidden")
-            })
+            // Show the open eye icon and hide the closed eye icon
+            this.querySelector('div.hidden').classList.toggle('hidden');
+            this.querySelector('div:not(.hidden)').classList.toggle('hidden');
           }
         }
       }
