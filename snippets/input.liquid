@@ -117,6 +117,7 @@
 {% endstyle %}
 
 <script>
+  document.addEventListener('DOMContentLoaded', function() {
 document.querySelector('.toggle-password').addEventListener('click', function() {
       const input = button.previousElementSibling;
   console.log(input)
@@ -127,6 +128,7 @@ document.querySelector('.toggle-password').addEventListener('click', function() 
         input.type = 'password';
       }
     });
+  })
   
 </script>
 
