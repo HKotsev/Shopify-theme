@@ -66,8 +66,13 @@
   pointer-events: none;
   transform-origin: left center;
   transition: transform 250ms;
-  font-family: "Iowan Old Style", "Palatino Linotype", "URW Palladio L", P052, serif;
 }
+
+  .toggle-password{
+     position: absolute;
+     top: 1.6rem;
+     right: 1.6rem;
+  }
 
 .custom-input:focus + .label {
   color: #0085CA;
@@ -146,6 +151,12 @@
   <label class="label" for="{{ input_id }}">
     {{ input_label }}
   </label>
+
+   {% if input_type == 'password' %}
+    <button type="button" class="toggle-password" aria-label="Toggle password visibility">
+      {% render "icon-eye-open" %}
+    </button>
+  {% endif %}
 </div>
 
 <!-- <div class="input-wrapper">
