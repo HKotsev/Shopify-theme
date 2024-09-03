@@ -16,7 +16,7 @@
 {{ 'component-swatch-input.css' | asset_url | stylesheet_tag }}
 {{ 'component-swatch.css' | asset_url | stylesheet_tag }}
 
-<div>{{ results }}</div>
+<div>{{ results.sort_by }}</div>
 
 {%- liquid
   assign sort_by = results.sort_by | default: results.default_sort_by
