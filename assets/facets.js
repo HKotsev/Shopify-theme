@@ -55,7 +55,7 @@ class FacetFiltersForm extends HTMLElement {
         : FacetFiltersForm.renderSectionFromFetch(url, event);
     });
 
-    // if (updateURLHash) FacetFiltersForm.updateURLHash(searchParams);
+    if (updateURLHash) FacetFiltersForm.updateURLHash(searchParams);
   }
 
   static renderSectionFromFetch(url, event) {
