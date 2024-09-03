@@ -46,16 +46,16 @@ class FacetFiltersForm extends HTMLElement {
       countContainerDesktop.classList.add('loading');
     }
 
-    sections.forEach((section) => {
-      const url = `${window.location.pathname}?section_id=${section.section}&${searchParams}`;
-      const filterDataUrl = (element) => element.url === url;
+    // sections.forEach((section) => {
+    //   const url = `${window.location.pathname}?section_id=${section.section}&${searchParams}`;
+    //   const filterDataUrl = (element) => element.url === url;
 
-      FacetFiltersForm.filterData.some(filterDataUrl)
-        ? FacetFiltersForm.renderSectionFromCache(filterDataUrl, event)
-        : FacetFiltersForm.renderSectionFromFetch(url, event);
-    });
+    //   FacetFiltersForm.filterData.some(filterDataUrl)
+    //     ? FacetFiltersForm.renderSectionFromCache(filterDataUrl, event)
+    //     : FacetFiltersForm.renderSectionFromFetch(url, event);
+    // });
 
-    if (updateURLHash) FacetFiltersForm.updateURLHash(searchParams);
+    // if (updateURLHash) FacetFiltersForm.updateURLHash(searchParams);
   }
 
   static renderSectionFromFetch(url, event) {
