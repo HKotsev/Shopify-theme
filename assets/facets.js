@@ -34,17 +34,17 @@ class FacetFiltersForm extends HTMLElement {
     const sections = FacetFiltersForm.getSections();
     const countContainer = document.getElementById('ProductCount');
     const countContainerDesktop = document.getElementById('ProductCountDesktop');
-    const loadingSpinners = document.querySelectorAll(
-      '.facets-container .loading__spinner, facet-filters-form .loading__spinner'
-    );
-    loadingSpinners.forEach((spinner) => spinner.classList.remove('hidden'));
-    document.getElementById('ProductGridContainer').querySelector('.collection').classList.add('loading');
-    if (countContainer) {
-      countContainer.classList.add('loading');
-    }
-    if (countContainerDesktop) {
-      countContainerDesktop.classList.add('loading');
-    }
+    // const loadingSpinners = document.querySelectorAll(
+    //   '.facets-container .loading__spinner, facet-filters-form .loading__spinner'
+    // );
+    // loadingSpinners.forEach((spinner) => spinner.classList.remove('hidden'));
+    // document.getElementById('ProductGridContainer').querySelector('.collection').classList.add('loading');
+    // if (countContainer) {
+    //   countContainer.classList.add('loading');
+    // }
+    // if (countContainerDesktop) {
+    //   countContainerDesktop.classList.add('loading');
+    // }
 
     // sections.forEach((section) => {
     //   const url = `${window.location.pathname}?section_id=${section.section}&${searchParams}`;
