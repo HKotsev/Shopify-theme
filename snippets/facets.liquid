@@ -237,8 +237,8 @@
                                   {{ text_value }}
                                 </div>
                               {%- else -%}
-                                <label for="{{ input_id }}" class="{{ label_class }}">
-                                  {{ filter.type }}
+                                <label for="{{ input_id }}" class="{{ label_class }}" style="{% if filter.label == "Size" %}backgroundColor=red {% endif %}">
+                                  {{ filter.label }}
                                   <input
                                     type="checkbox"
                                     name="{{ value.param_name }}"
