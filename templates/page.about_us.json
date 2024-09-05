@@ -16,6 +16,11 @@
         "padding_bottom": 28
       }
     },
+    "about_us": {
+      "type": "about-us",
+      "settings": {
+      }
+    },
     "image_banner_gEpMAm": {
       "type": "image-banner",
       "blocks": {
@@ -69,6 +74,7 @@
   },
   "order": [
     "main",
+    "about_us",
     "image_banner_gEpMAm"
   ]
 }
