@@ -10,14 +10,14 @@
 {
   "sections": {
     "main": {
-      "type": "main-page",
+      "type": "about-us-main",
       "settings": {
         "padding_top": 28,
         "padding_bottom": 28
       }
     },
-    "about_us": {
-      "type": "about-us",
+    "highlights": {
+      "type": "highlights",
       "settings": {
       }
     },
@@ -74,7 +74,7 @@
   },
   "order": [
     "main",
-    "about_us",
+    "highlights",
     "image_banner_gEpMAm"
   ]
 }

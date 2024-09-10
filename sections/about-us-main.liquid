@@ -1,0 +1,103 @@
+{{ 'section-main-page.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .about-us-main{
+      margin:0 27.9rem
+  }
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+      padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+    }
+
+    .about-us-heading{
+        font-size:1.8rem;
+        font-weight:bold;
+        line-height:2.2rem;
+    }
+
+    .about-us-content{
+        font-size:1.6rem;
+    }
+
+     @media (max-width: 1024px) {
+      .about-us-main{
+          margin:0 15rem
+      }
+    }
+
+    .rte img{
+        border:none
+    }
+
+    @media (max-width: 1024px) {
+      .about-us-main{
+          margin:0 15rem
+      }
+    }
+
+    @media (max-width: 768px) {
+      .about-us-main{
+          margin:0 1.5rem
+      }
+
+      .about-us-heading{
+        font-size:1.6rem
+      }
+
+      .about-us-content{
+        font-size:1.4rem;
+    }
+    }
+
+    @media (max-width: 425px) {
+      .about-us-heading{
+        font-size:1.4rem
+      }
+
+    @media screen and (min-width: 750px) {
+      .section-{{ section.id }}-padding {
+        padding-top: {{ section.settings.padding_top }}px;
+        padding-bottom: {{ section.settings.padding_bottom }}px;
+      }
+    }
+{%- endstyle -%}
+
+<div class="about-us-main section-{{ section.id }}-padding">
+  <div class="rte{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+    {{ page.content }}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "t:sections.main-page.name",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 36
+    }
+  ]
+}
+{% endschema %}

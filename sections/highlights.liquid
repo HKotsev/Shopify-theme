@@ -1,0 +1,113 @@
+{% style %}
+  .highlights-container {
+    /* padding: 2rem; */
+    margin: 0 4rem;
+    text-align: center;
+  }
+
+  .highlights-container h2 {
+    font-weight: bold;
+    line-height: 2.4rem;
+    font-size: 2rem;
+  }
+  /* Container Styling */
+  .highlights {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2.4rem; /* Space between the items */
+  }
+
+  /* Item Styling */
+  .item {
+    text-align: center;
+    flex: 1 1 calc(33.33% - 4.8rem); /* 3 items per row, accounting for gap */
+    max-width: calc(33.33% - 4.8rem); /* Ensure max width */
+  }
+
+  .item img {
+    width: 100%; /* Make image responsive */
+    max-width: 23rem; /* Maximum width of image */ /* Maintain aspect ratio */
+  }
+
+  /* Media query for tablets (2 items per row) */
+  @media (max-width: 1024px) {
+    .item {
+      flex: 1 1 calc(50% - 4.8rem); /* 2 items per row */
+      max-width: calc(50% - 4.8rem);
+    }
+  }
+
+  /* Media query for mobile (1 item per row) */
+  @media (max-width: 768px) {
+    .item {
+      flex: 1 1 100%; /* 1 item per row */
+      max-width: 100%;
+    }
+
+    @media (max-width: 320px) {
+      .item img {
+        max-width: 15rem;
+      }
+    }
+  }
+
+  /* Center the last item if it's alone in the row */
+  .flex-container > .item:nth-last-child(1) {
+    flex-basis: 100%;
+    text-align: center; /* Center text on the last item */
+  }
+{% endstyle %}
+
+<div class="highlights-container">
+  <h2>{{ section.settings.title }}</h2>
+  <section class="highlights">
+    {% for block in section.blocks %}
+      <div class="item">
+        <h3>{{ block.settings.title }}</h3>
+        <img src="{{ block.settings.image | image_url }}" alt="{{ block.settings.title }}">
+        <p>{{ block.settings.content }}</p>
+      </div>
+    {% endfor %}
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "Highlights",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Highlights"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "highlight",
+      "name": "Highlight",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Title"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "textarea",
+          "id": "content",
+          "label": "Content",
+          "default": "Content"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
