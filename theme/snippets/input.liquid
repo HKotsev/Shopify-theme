@@ -1,0 +1,356 @@
+{% style %}
+  .input-wrapper {
+    position: relative;
+    margin-top: 30px;
+  }
+
+  .custom-input {
+    border: 0.0625rem solid #000;
+    border-radius: 0.5rem;
+    font-size: 2rem;
+    height: 5.6rem;
+    width: 100%;
+    padding: 1.5rem 1.6rem 0.5rem;
+    font-size: 1.6rem;
+    font-weight: 400;
+    line-height: 1.375;
+    color: #000;
+
+    background-color: transparent;
+  }
+
+  .custom-input:focus {
+    border-color: #0085ca;
+    outline: none;
+    outline-offset: none;
+    box-shadow: none;
+  }
+
+  .custom-input:focus-visible {
+    outline: none;
+  }
+
+  .custom-input::placeholder {
+    color: transparent;
+  }
+
+  /* Hide Safari's autofill button */
+  .custom-input::-webkit-contacts-auto-fill-button {
+    visibility: hidden;
+    pointer-events: none;
+    position: absolute;
+  }
+
+  /* Change the border color of the wrapper on input focus */
+  .custom-input:focus ~ .input-wrapper {
+    border-color: #0085ca;
+  }
+
+  .label {
+    font-size: 1.6rem;
+    position: absolute;
+    top: 1.6rem;
+    left: 1.6rem;
+    color: #43454e;
+    font-weight: 400;
+    line-height: 1.375;
+    pointer-events: none;
+    transform-origin: left center;
+    transition: transform 250ms;
+  }
+
+  .icon {
+    position: absolute;
+    top: 1.6rem;
+    right: 1.6rem;
+    cursor: pointer;
+  }
+
+  .custom-input:focus + .label {
+    color: #0085ca;
+  }
+
+  .custom-input:focus + .label,
+  .custom-input:not(:placeholder-shown) + .label {
+    transform: translateY(-60%) scale(0.65);
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  .custom-input:placeholder-shown + .label + .clear {
+    display: none;
+  }
+
+  .tooltip-container {
+    position: absolute;
+  }
+
+  .tooltip {
+    visibility: hidden;
+    width: 160px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%; /* Position above the trigger element */
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .tooltip::after {
+    content: '';
+    position: absolute;
+    top: 100%; /* At the bottom of the tooltip */
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 5px;
+    border-style: solid;
+    border-color: #333 transparent transparent transparent;
+  }
+
+  .error-input {
+    border-color: #990000;
+  }
+
+  .error {
+    color: #990000;
+  }
+  .input-error {
+  }
+
+  .error-message {
+    text-align: left;
+  }
+
+  .tooltip-container:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .requirements-list {
+    list-style-type: none;
+    display: grid;
+    grid-template-columns: 13rem 15rem;
+    grid-template-rows: repeat(2, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+
+    padding: 0;
+    max-width: 30rem;
+  }
+  .password-requirements h3 {
+    text-align: left;
+  }
+
+  .requirements-list li {
+    color: #43454e;
+    font-size: 1rem;
+    width: 100%;
+    gap: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .requirements-list li span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @media (max-width: 600px) {
+    .tooltip::after {
+      left: 90%;
+    }
+    .tooltip {
+      left: 100%;
+      transform: translateX(-97%);
+    }
+
+    .requirements-list li {
+      font-size: 0.9rem;
+    }
+  }
+
+  .icon-check-unchecked {
+    stroke: #d6d8dc; /* Default color */
+  }
+
+  .icon-check-valid {
+    stroke: #358837; /* Color for valid */
+  }
+{% endstyle %}
+
+<script>
+  const validationFunctions = {
+    email: validateEmail,
+    password: validatePassword,
+    // Add more validation types here
+  };
+
+  function validateInput(input) {
+    const validationType = input.getAttribute('data-validate');
+    const errorMessage = document.getElementById(`${input.id}-error`);
+
+    if (validationType && validationFunctions[validationType]) {
+      validationFunctions[validationType](input, errorMessage);
+    }
+  }
+
+  function validateEmail(input, errorMessage) {
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const wrapper = input.closest('.input-wrapper');
+    const error_warning = wrapper.querySelector('#warrning-error');
+
+    if (!emailPattern.test(input.value)) {
+      toggleVisiblity(error_warning, false);
+      showValidationError(wrapper, input, errorMessage, 'Please enter a valid email address');
+    } else {
+      toggleVisiblity(error_warning, true);
+      clearValidationError(wrapper, input, errorMessage);
+    }
+  }
+
+  function toggleVisiblity(element, show) {
+    element.classList.toggle('hidden', show);
+  }
+
+  function validatePassword(input, errorMessage) {
+    console.log('here');
+    const wrapper = input.closest('.input-wrapper');
+    const requirements = {
+      length: input.value.length >= 8,
+      lowercase: /[a-z]/.test(input.value),
+      uppercase: /[A-Z]/.test(input.value),
+      number: /[0-9]/.test(input.value),
+    };
+
+    let hasError = false;
+
+    Object.keys(requirements).forEach((key) => {
+      const iconElement = wrapper.querySelector(`#icon-${key}`);
+      const uncheckedIcon = iconElement.querySelector('.icon-check-unchecked');
+      const checkedIcon = iconElement.querySelector('.icon-check-checked');
+
+      if (requirements[key]) {
+        toggleVisiblity(uncheckedIcon, true);
+        toggleVisiblity(checkedIcon, false);
+      } else {
+        toggleVisiblity(uncheckedIcon, false);
+        toggleVisiblity(checkedIcon, true);
+        hasError = true;
+      }
+    });
+
+    if (hasError) {
+      showValidationError(wrapper, input, errorMessage, 'This password does not meet all requirements');
+    } else {
+      clearValidationError(wrapper, input, errorMessage);
+    }
+  }
+
+  function showValidationError(wrapper, input, errorMessage, message) {
+    input.classList.add('error-input');
+    input.setAttribute('aria-invalid', 'true');
+    errorMessage.textContent = message;
+    toggleVisiblity(errorMessage, false);
+  }
+
+  function clearValidationError(wrapper, input, errorMessage) {
+    input.classList.remove('error-input');
+    input.removeAttribute('aria-invalid');
+    errorMessage.textContent = '';
+    toggleVisiblity(errorMessage, true);
+  }
+</script>
+
+<div class="input-wrapper">
+  <!--
+    Input needs to have a placeholder in order to use :placeholder-shown pseudo class in Safari.
+    We then hide it using CSS.
+  -->
+  <input
+    class="custom-input {{ input_classNames }}"
+    type="{{ input_type }}"
+    name="{{ input_name }}"
+    id="{{ input_id }}"
+    {% if input_value %}
+      value="{{ input_value }}"
+    {% endif %}
+    autocomplete="{{ input_autocomplete }}"
+    placeholder="{{ input_placeholder }}"
+    {% if input_spellcheck %}
+      spellcheck="{{ input_spellcheck }}"
+    {% endif %}
+    {% if input_autocapitalize %}
+      autocapitalize="{{ input_autocapitalize }}"
+    {% endif %}
+    {% if input_aria_required %}
+      aria-required="{{ input_aria_required }}"
+    {% endif %}
+    {% if input_aria_invalid %}
+      aria-invalid="{{ input_aria_invalid }}"
+    {% endif %}
+    {% if input_aria_describedby %}
+      aria-describedby="{{ input_aria_describedby }}"
+    {% endif %}
+    {% if input_validate == 'email' or input_validate == 'password' %}
+      oninput="validateInput(this)"
+      data-validate="{{ input_validate }}"
+    {% endif %}
+
+    {% if input_validate == 'email' or input_validate == 'password' %}
+      onblur="validateInput(this)"
+    {% endif %}
+  >
+  <label class="label" for="{{ input_id }}">
+    {{ input_label }}
+  </label>
+
+  <p class="hidden error error-message" id="{{ input_id }}-error"></p>
+
+  {% if input_type == 'password' %}
+    <div class="password-requirements">
+      <h3>Password Requirements</h3>
+      <ul style="padding: 0;" class="requirements-list">
+        <li class="requirement" id="icon-length">
+          <span class="icon-check-unchecked">{% render 'icon-check-unchecked' %}</span>
+          <span class="icon-check-checked hidden">{% render 'icon-check-checked' %}</span>At least 8 characters
+        </li>
+        <li class="requirement" id="icon-lowercase">
+          <span class="icon-check-unchecked">{% render 'icon-check-unchecked' %}</span>
+          <span class="icon-check-checked hidden">{% render 'icon-check-checked' %}</span>At least 1 lowercase letter
+        </li>
+        <li class="requirement" id="icon-number">
+          <span class="icon-check-unchecked">{% render 'icon-check-unchecked' %}</span>
+          <span class="icon-check-checked hidden">{% render 'icon-check-checked' %}</span>At least 1 number
+        </li>
+        <li class="requirement" id="icon-uppercase">
+          <span class="icon-check-unchecked">{% render 'icon-check-unchecked' %}</span>
+          <span class="icon-check-checked hidden">{% render 'icon-check-checked' %}</span>At least 1 uppercase letter
+        </li>
+      </ul>
+    </div>
+
+    <div type="button" class="icon toggle-password" aria-label="Toggle password visibility">
+      <div>{% render 'icon-eye-open' %}</div>
+      <div class="hidden">{% render 'icon-eye-closed' %}</div>
+    </div>
+  {% endif %}
+
+  {% if info_icon %}
+    <div class="icon tooltip-container" aria-label="Toggle password visibility">
+      <div class="tooltip-trigger" aria-describedby="tooltip-text">{% render 'icon-input-info' %}</div>
+      <div class="tooltip" id="tooltip-text">This is the tooltip text! asdasdas assdasdas asdasdasd asdasd!</div>
+    </div>
+  {% endif %}
+
+  <div class="icon hidden" id="warrning-error">{% render 'icon-error-warning' %}</div>
+</div>

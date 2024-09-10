@@ -1,0 +1,128 @@
+{% style %}
+  .notification-container {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    color: black;
+    padding: 1rem;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+    transform: translateY(100%); /* Hidden by default */
+    opacity: 0; /* Hidden by default */
+    visibility: hidden; /* Start hidden but maintain the layout */
+    display: grid;
+    grid-template-columns: 2rem 1fr; /* Icon column + text column */
+    gap: 0.8rem; /* Space between icon and text */
+    max-width: 30rem;
+    width: 100%;
+  }
+
+  .notification-container .icon {
+    grid-column: 1 / 2; /* Icon in the first column */
+  }
+
+  .notification-container .text {
+    grid-column: 2 / 3; /* Text in the second column */
+  }
+
+  .notification-container span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .notification-container h3 {
+    font-size: 1.6rem;
+    font-weight: bold;
+    margin: 0;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+  }
+
+  .notification-container p {
+    font-size: 1.4rem;
+    margin: 0;
+    text-align: left;
+    grid-area: 2 / 2 / 3 / 3;
+  }
+
+  .notification-container.success {
+    background-color: #e7f8e9; /* Light Green background */
+  }
+
+  .notification-container.info {
+    background-color: #e7f8fc; /* Light Blue background */
+  }
+
+  .notification-container.delivery {
+    background-color: #fef4e7; /* Light Orange background */
+  }
+
+  .notification-container.show {
+    transform: translateY(0); /* Slide up into view */
+    opacity: 1; /* Make it visible */
+    visibility: visible; /* Ensure the element is visible */
+    transition: transform 0.5s ease, opacity 0.5s ease, visibility 0s linear 0s; /* Adjust transition timing */
+  }
+
+  .notification-container.hide {
+    transform: translateY(100%); /* Slide down out of view */
+    opacity: 0; /* Make it hidden */
+    visibility: hidden; /* Hide the element */
+    transition: transform 0.5s ease, opacity 0.5s ease, visibility 0s linear 0.5s; /* Adjust transition timing */
+  }
+
+  .notification-close-button {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    cursor: pointer;
+  }
+
+  @media (max-width: 320px) {
+    .notification-container {
+      right: 1rem;
+      bottom: 1rem;
+    }
+  }
+{% endstyle %}
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const notificationCloseButtons = document.querySelectorAll('.notification-close-button');
+
+    notificationCloseButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        const notification = button.closest('.notification-container');
+        notification.classList.remove('show');
+        notification.classList.add('hide');
+
+        // setTimeout(() => {
+        //   notification.classList.remove('hide');
+        // }, 500); // Duration of the slide down animation
+      });
+    });
+  });
+</script>
+
+<div
+  id="success-message-{{id}}"
+  class="notification-container {% if type == 'success' %}success{% elsif type == 'info' %}info{% elsif type == 'delivery' %}delivery{% endif %}"
+>
+  <span>
+    {% if type == 'success' %}
+      {% render 'icon-check-checked' %}
+    {% elsif type == 'info' %}
+      {% render 'icon-notification-info' %}
+    {% elsif type == 'delivery' %}
+      {% render 'icon-delivery' %}
+    {% endif %}
+  </span>
+  <h3>{{ title }}</h3>
+  <p>{{ message }}</p>
+
+  <div class="notification-close-button">{% render 'icon-custom-close' %}</div>
+</div>
